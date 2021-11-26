@@ -17,6 +17,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CloudinaryUploadWidget from "./components/Upload";
 import Profile from "./pages/Profile"
+import AdminUser from "./pages/AdminUser";
+import OtherProfiles from "./pages/OtherProfiles";
 // Query and mutate models on localhost:3001/graphql
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -65,6 +67,12 @@ function App() {
           </Route>
           <Route exact path="/me">
             <Profile />
+          </Route>
+          <Route exact path="/admin">
+            <AdminUser />
+          </Route>
+          <Route exact path="/otherprofiles/:videoAuthor">
+            <OtherProfiles />
           </Route>
         </div>
         <Footer />
