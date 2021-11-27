@@ -51,6 +51,7 @@ const typeDefs = gql`
     videoMetrics(videoId: String, views: Int): Video
     updateLikes(videoId: String, user: String): Video
     updateDislikes(videoId: String, user: String): Video
+    updateUserLevel(level: Int, userId: String): User
     removeVideo(videoId: ID!): Video
   }
 `;

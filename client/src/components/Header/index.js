@@ -32,7 +32,7 @@ const Header = () => {
               { level ===3 || level === 3 ? (<Link className="nav-item nav-link" to="/admin">
                 Admin Portal
               </Link>) : ("")}
-              <Link className="nav-item nav-link" onClick={logout}>
+              <Link className="nav-item nav-link" to="/" onClick={logout}>
                 Logout
               </Link>
             </>

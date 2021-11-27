@@ -133,7 +133,19 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    updateUserLevel: async (parent, {userId, level}) => {
+      const user = await User.findOneAndUpdate(
+        {_id: userId},
+        {level: level},
+        {new: true}
+      )
+      return user;
+    }
+
   },
 };
+
+
 
 module.exports = resolvers;
