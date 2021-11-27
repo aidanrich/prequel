@@ -9,6 +9,7 @@ import Admin from "../components/Admin";
 const AdminUser = () => {
     const { loading, data } = useQuery(QUERY_USERS);
     const users = data?.users || [];
+   
     return (
         <Container>
           <Row>

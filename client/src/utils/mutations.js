@@ -87,6 +87,17 @@ export const REMOVE_VIDEO = gql`
   }
 `
 
+export const UPDATE_LEVEL = gql`
+mutation updateUserLevel($userId: String!, $level: Int){
+  updateUserLevel(userId: $userId, level: $level) {
+     _id
+      name
+      email
+      level
+  }
+}
+`
+
 export default ADD_VIDEO;
 
 
