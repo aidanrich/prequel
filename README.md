@@ -35,7 +35,7 @@ The Individual Video Page:
 
 ![Video Page Screenshot](assets/prequelvideopage.PNG)
 
-Here is a link to the Heroku deployment: [Prequel Heroku Deployment](https://thawing-castle-85641.herokuapp.com)
+Here is a link to the Heroku deployment: [Prequel Heroku Deployment](https://blooming-atoll-34852.herokuapp.com)
 
 ## Usage
 
