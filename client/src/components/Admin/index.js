@@ -20,10 +20,11 @@ return (
         <Card className="text-center my-3" key={user._id}>
           <Card.Header as="h2" className="video-title">{user.name}</Card.Header>
           <Card.Body className="video-body">
-            <Card.Title className="roboto-font">User Level:{user.level}</Card.Title>
-            <Link to={`/userCrud/${user._id}`}>Change User Level</Link>
+          <Card.Title className="roboto-font">User email: {user.email}</Card.Title>
+            <Card.Title className="roboto-font">User Level: {user.level}</Card.Title>
+            <Link className="nav-item nav-link" to={`/userCrud/${user._id}`}>Change User Level</Link>
 
-            <div><Link to={`/otherprofiles/${user.name}`} >Link to user's videos</Link></div>
+            <div><Link className="nav-item nav-link" to={`/otherprofiles/${user.name}`} >Link to user's videos</Link></div>
           </Card.Body >
         </Card >
       ))}
