@@ -15,13 +15,13 @@ const LevelChanger = () => {
 
     const levelChange = async () => {
         let levelUp;
-        if (level === "0") {
-            levelUp = 0
+        if (level === "3") {
+            levelUp = 3
         } else if (level === "1") {
             levelUp = 1
         } else if (level === "2") {
             levelUp = 2
-        } else levelUp = 3
+        } else levelUp = 0
 
 
         try {
