@@ -108,7 +108,10 @@ const SingleVideo = () => {
 
               {level >= 0 ? (<p><button className='button6' disabled={disable} onClick={clickLike}><i className="fas fa-thumbs-up"></i></button>
 
-                <button className='button6' disabled={disable} onClick={clickDislike}><i className="fas fa-thumbs-down"></i></button></p>): ("")}
+                <button className='button6' disabled={disable} onClick={clickDislike}><i className="fas fa-thumbs-down"></i></button>
+               <button className='button6'>Follow</button>
+               </p>
+                ): ("")}
 
 
             </Card.Body >
