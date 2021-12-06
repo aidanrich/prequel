@@ -25,6 +25,11 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+  follows: [
+    {
+    type: String,
+    },
+  ],
 
   videos: [
     {

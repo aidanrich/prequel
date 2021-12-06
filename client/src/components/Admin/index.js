@@ -12,7 +12,6 @@ const Admin = ({ users }) => {
   let userId = "";
   if (Auth.getProfile()) {
     level = Auth.getProfile().data.level;
-    userId = Auth.getProfile().data._id;
   };
 
 

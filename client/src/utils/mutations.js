@@ -98,6 +98,19 @@ mutation updateUserLevel($userId: String!, $level: Int){
 }
 `
 
+export const UPDATE_FOLLOWS = gql`
+mutation updateFollows($userId: String!, $follows: String){
+  updateFollows(userId: $userId, follows: $follows) {
+    _id
+    name
+    email
+    level
+    follows
+  }
+}
+`
+
+
 export default ADD_VIDEO;
 
 

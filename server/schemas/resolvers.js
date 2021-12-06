@@ -141,6 +141,17 @@ const resolvers = {
         {new: true}
       )
       return user;
+    },
+
+    updateFollows: async (parent, {userId, follows}) => {
+      const user =  await User.findOneAndUpdate(
+        {_id: userId},
+        {
+        $push:  {follows: follows},
+        },
+        {new: true}
+      )
+      return user;
     }
 
   },

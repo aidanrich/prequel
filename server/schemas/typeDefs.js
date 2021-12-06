@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     level: Int
+    follows: [String]
   }
 
   type Video {
@@ -42,6 +43,7 @@ const typeDefs = gql`
    genres: [Genre]
    genre(_id: ID!): Genre
    me: User
+   myFollow(follows: [String]): [Video]
   }
 
   type Mutation {
@@ -53,6 +55,7 @@ const typeDefs = gql`
     updateDislikes(videoId: String, user: String): Video
     updateUserLevel(level: Int, userId: String): User
     removeVideo(videoId: ID!): Video
+    updateFollows(userId: String, follows: String): User
   }
 `;
 
