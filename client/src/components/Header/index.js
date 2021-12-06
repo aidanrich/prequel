@@ -25,6 +25,7 @@ const Header = () => {
           <Link className="nav-item nav-link" to="/">Home</Link>
           {Auth.loggedIn() ? (
             <>
+              <Link className="nav-item nav-link" to="/follows">Subscriptions</Link>
               {level === 1 || level === 3 ? (<Link className="nav-item nav-link" to="/upload"> Upload</Link>) : ("")}
               {level === 1 || level === 3 ? (<Link className="nav-item nav-link" to="/me">
                 View My Profile

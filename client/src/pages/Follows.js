@@ -12,7 +12,7 @@ const Follows = () => {
     const { loading, data } = useQuery(QUERY_SINGLE_USER, {
         variables: { id: Auth.getProfile().data._id }
     });
-    console.log(data)
+    
     const myFollows = data?.user.follows || [];
 
     // const { loading, data } = useQuery(QUERY_MY_VIDEOS, {
