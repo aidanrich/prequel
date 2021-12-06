@@ -44,7 +44,7 @@ export const QUERY_MY_VIDEOS = gql`
       publishDate
     }
   }
-`
+`;
 
 export const QUERY_USERS = gql`
   query allUsers {
@@ -53,6 +53,7 @@ export const QUERY_USERS = gql`
       name
       email
       level
+      follows
     }
   }
 `;
@@ -63,6 +64,7 @@ export const QUERY_SINGLE_USER = gql`
       name
       email
       level
+      follows
     }
   }
 `;

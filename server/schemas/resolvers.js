@@ -28,6 +28,10 @@ const resolvers = {
       return await Video.find({ videoAuthor: videoAuthor });
     },
 
+    // myFollows: async (parent, {follows}) => {
+    //   return await Video.find({ videoAuthor: follows })
+    // },
+
     // Query for all genres
     genres: async () => {
       return await Genre.find();
