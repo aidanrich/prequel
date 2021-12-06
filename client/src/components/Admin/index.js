@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Form from 'react-bootstrap/Form'
-import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_LEVEL } from "../../utils/mutations";
-
+// import Form from 'react-bootstrap/Form'
+// import { useMutation, useQuery } from "@apollo/client";
+// import { UPDATE_LEVEL } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
 const Admin = ({ users }) => {
-  // TO DO update code here:
+  
+  let level = -1;
+  let userId = "";
+  if (Auth.getProfile()) {
+    level = Auth.getProfile().data.level;
+    userId = Auth.getProfile().data._id;
+  };
+
 
 if (!users.length) {
   return <h3 className="roboto-font2">No Users Yet!</h3>;
@@ -15,7 +22,7 @@ if (!users.length) {
 
 return (
   <div>
-    {users &&
+    {level === 3 ? (<div>{users &&
       users.map((user) => (
         <Card className="text-center my-3" key={user._id}>
           <Card.Header as="h2" className="video-title">{user.name}</Card.Header>
@@ -27,7 +34,9 @@ return (
             <div><Link className="nav-item nav-link" to={`/otherprofiles/${user.name}`} >Link to user's videos</Link></div>
           </Card.Body >
         </Card >
-      ))}
+      ))}</div>
+      ): (<p className="roboto-font card-body">Admin's Only</p>)}
+   
   </div>
 )
 }

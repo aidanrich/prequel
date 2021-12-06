@@ -6,7 +6,9 @@ import Col from "react-bootstrap/Col";
 import { QUERY_USERS } from "../utils/queries";
 import Admin from "../components/Admin";
 
+
 const AdminUser = () => {
+
     const { loading, data } = useQuery(QUERY_USERS);
     const users = data?.users || [];
    
