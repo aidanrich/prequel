@@ -22,8 +22,9 @@ const SingleVideo = () => {
   const [updateLikes, { err }] = useMutation(UPDATE_LIKES);
   const [updateDislikes, { erro }] = useMutation(UPDATE_DISLIKES);
   const [updateFollow, { er }] = useMutation(UPDATE_FOLLOWS);
+
   const [followDisable, setFollowDisable] = useState(false)
-  // Queries singe video based on params video id
+  // Queries singe video based on params video id, and user based on auth
 
   const { loading: videoLoading, data: videoData } = useQuery(QUERY_SINGLE_VIDEO, {
     variables: { videoId: videoId },
