@@ -42,6 +42,7 @@ export const QUERY_MY_VIDEOS = gql`
       dislikes
       views
       publishDate
+      videoAuthor
     }
   }
 `;

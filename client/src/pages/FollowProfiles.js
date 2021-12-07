@@ -40,10 +40,7 @@ const FollowProfiles = () => {
                   <source src={video.cloudURL} type="video/mp4" />
                 </video>
               </Link>
-              <div className="roboto-font"><i className="fas fa-user"></i>  {Auth.getProfile().data.name}</div>
-              <div>
-                <Link className="delete-trash" to={`/videos/${video._id}`}><i className="fas fa-trash"></i></Link>
-              </div>
+              <div className="roboto-font"><i className="fas fa-user"></i>  {video.videoAuthor}</div>
             </Card.Body>
           </Card>
         </Container>
