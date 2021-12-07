@@ -21,7 +21,8 @@ const SingleVideo = () => {
   const [videoMetrics, { error }] = useMutation(VIDEO_METRICS);
   const [updateLikes, { err }] = useMutation(UPDATE_LIKES);
   const [updateDislikes, { erro }] = useMutation(UPDATE_DISLIKES);
-  const [updateFollow, { er }] = useMutation(UPDATE_FOLLOWS)
+  const [updateFollow, { er }] = useMutation(UPDATE_FOLLOWS);
+  const [followDisable, setFollowDisable] = useState(false)
   // Queries singe video based on params video id
 
   const { loading: videoLoading, data: videoData } = useQuery(QUERY_SINGLE_VIDEO, {
@@ -34,7 +35,6 @@ const SingleVideo = () => {
 
   let disable = false;
   
-  let followDisable = false;
 
 
   if (videoLoading || userLoading) {
@@ -42,15 +42,11 @@ const SingleVideo = () => {
   } else {
     const video = videoData?.video || {};
     const myFollows = userData?.user || {};
-    console.log(userData)
-   
-   
+    
+
+
     if (video.likedBy.includes(userId) || video.dislikedBy.includes(userId)) {
       disable = true;
-    }
-
-    if ( myFollows.follows.includes(video.videoAuthor) ) { 
-      followDisable = true;
     }
 
 
@@ -105,12 +101,12 @@ const SingleVideo = () => {
     }
     // Calls to increase dislikes on click of dislike button
     const clickDislike = () => {
-      isDisliked()
+      isDisliked();
       disable = true;
     }
     // follow button
     const newFollow = async () => {
-      
+
       try {
         await updateFollow({
           variables: {
@@ -122,45 +118,49 @@ const SingleVideo = () => {
         console.error(err);
       }
     }
-  
 
-  const clickFollow = () => {
-    newFollow()
-    followDisable = true;
+
+    const clickFollow = () => {
+      newFollow();
+      setFollowDisable(true)
+    }
+
+
+    // updates views on page reload
+    updateMetrics();
+    
+
+    return (
+      <div>
+        <Container>
+          <Card className="text-center my-3">
+            <Card.Header as="h2" className="video-title">{video.title}</Card.Header>
+            <Card.Body className="video-body">
+              <Card.Title className="roboto-font">{video.publishDate}</Card.Title>
+              <Card.Title className="roboto-font">{viewsTag}</Card.Title>
+              <video style={{ width: 660, height: "auto" }} controls>
+                <source src={video.cloudURL} type="video/mp4" />
+              </video>
+              <p className="roboto-font">Likes: {video.likes}</p><p className="roboto-font"> Dislikes: {video.dislikes}</p>
+
+              {level >= 0 ? (<p><button className='button6' disabled={disable} onClick={clickLike}><i className="fas fa-thumbs-up"></i></button>
+
+                <button className='button6' disabled={disable} onClick={clickDislike}><i className="fas fa-thumbs-down"></i></button>
+                {
+                myFollows.follows.includes(video.videoAuthor) ?
+                (<button className='button6' disabled={true} >Followed</button>)
+                : (<button className='button6' disabled={followDisable} onClick={clickFollow}>Follow</button>)
+                }
+              </p>
+              ) : ("")}
+
+
+            </Card.Body >
+          </Card >
+        </Container >
+      </div >
+    );
   }
-
-
-  // updates views on page reload
-  updateMetrics();
-
-  return (
-    <div>
-      <Container>
-        <Card className="text-center my-3">
-          <Card.Header as="h2" className="video-title">{video.title}</Card.Header>
-          <Card.Body className="video-body">
-            <Card.Title className="roboto-font">{video.publishDate}</Card.Title>
-            <Card.Title className="roboto-font">{viewsTag}</Card.Title>
-            <video style={{ width: 660, height: "auto" }} controls>
-              <source src={video.cloudURL} type="video/mp4" />
-            </video>
-            <p className="roboto-font">Likes: {video.likes}</p><p className="roboto-font"> Dislikes: {video.dislikes}</p>
-
-            {level >= 0 ? (<p><button className='button6' disabled={disable} onClick={clickLike}><i className="fas fa-thumbs-up"></i></button>
-
-              <button className='button6' disabled={disable} onClick={clickDislike}><i className="fas fa-thumbs-down"></i></button>
-
-              <button className='button6' disabled={followDisable} onClick={clickFollow}>Follow</button>
-            </p>
-            ) : ("")}
-
-
-          </Card.Body >
-        </Card >
-      </Container >
-    </div >
-  );
-}
 };
 
 export default SingleVideo;
