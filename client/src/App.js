@@ -21,6 +21,7 @@ import AdminUser from "./pages/AdminUser";
 import OtherProfiles from "./pages/OtherProfiles";
 import LevelChanger from "./pages/LevelChanger";
 import Follows from "./pages/Follows"
+import FollowProfiles from "./pages/FollowProfiles";
 // Query and mutate models on localhost:3001/graphql
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -81,6 +82,9 @@ function App() {
           </Route>
           <Route exact path="/follows">
             <Follows />
+          </Route>
+          <Route exact path="/followprofiles/:videoAuthor">
+            <FollowProfiles />
           </Route>
         </div>
         <Footer />

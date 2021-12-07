@@ -36,7 +36,7 @@ const LevelChanger = () => {
             console.error(err); // If there is an error its logged in the console
         }
     }
-    //   console.log(userId, level)
+    
 
     const levelClick = (event) => {
         event.preventDefault();

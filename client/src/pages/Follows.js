@@ -15,12 +15,6 @@ const Follows = () => {
     
     const myFollows = data?.user.follows || [];
 
-    // const { loading, data } = useQuery(QUERY_MY_VIDEOS, {
-    //     variables: { videoAuthor: myFollows },
-    // });
-
-    // const videos = data?.myVideos || [];
-
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -36,7 +30,7 @@ const Follows = () => {
                         </Card.Header>
                         <Card.Body className="video-body">
                             <Card.Title className="roboto-font">
-                                <i className="fas fa-calendar-alt"></i>
+                                <Link className="nav-item nav-link" to={`/followprofiles/${video}`}><i class="fas fa-play-circle"></i> Videos</Link>
                             </Card.Title>
                         </Card.Body>
                     </Card>
