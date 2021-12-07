@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { QUERY_SINGLE_VIDEO } from "../utils/queries";
+import { QUERY_SINGLE_VIDEO, QUERY_SINGLE_USER } from "../utils/queries";
 import { VIDEO_METRICS, UPDATE_LIKES, UPDATE_DISLIKES, UPDATE_FOLLOWS } from "../utils/mutations";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -13,6 +13,7 @@ const SingleVideo = () => {
   // if user is not logged in, level is -1 which restricts certain privileges 
   let level = -1;
   let userId = "";
+
   if (Auth.getProfile()) {
     level = Auth.getProfile().data.level;
     userId = Auth.getProfile().data._id;
@@ -22,20 +23,36 @@ const SingleVideo = () => {
   const [updateDislikes, { erro }] = useMutation(UPDATE_DISLIKES);
   const [updateFollow, { er }] = useMutation(UPDATE_FOLLOWS)
   // Queries singe video based on params video id
-  const { loading, data } = useQuery(QUERY_SINGLE_VIDEO, {
+
+  const { loading: videoLoading, data: videoData } = useQuery(QUERY_SINGLE_VIDEO, {
     variables: { videoId: videoId },
+  })
+
+  const { loading: userLoading, data: userData } = useQuery(QUERY_SINGLE_USER, {
+    variables: { id: userId }
   });
 
   let disable = false;
+  
+  let followDisable = false;
 
-  if (loading) {
+
+  if (videoLoading || userLoading) {
     return <div>Loading...</div>;
   } else {
-    const video = data?.video || {};
-
+    const video = videoData?.video || {};
+    const myFollows = userData?.user || {};
+    console.log(userData)
+   
+   
     if (video.likedBy.includes(userId) || video.dislikedBy.includes(userId)) {
       disable = true;
     }
+
+    if ( myFollows.follows.includes(video.videoAuthor) ) { 
+      followDisable = true;
+    }
+
 
     let viewsTag = "";
     if (level > 0) {
@@ -93,7 +110,7 @@ const SingleVideo = () => {
     }
     // follow button
     const newFollow = async () => {
-      console.log(video.videoAuthor)
+      
       try {
         await updateFollow({
           variables: {
@@ -109,7 +126,7 @@ const SingleVideo = () => {
 
   const clickFollow = () => {
     newFollow()
-    disable = true;
+    followDisable = true;
   }
 
 
@@ -133,7 +150,7 @@ const SingleVideo = () => {
 
               <button className='button6' disabled={disable} onClick={clickDislike}><i className="fas fa-thumbs-down"></i></button>
 
-              <button className='button6' onClick={clickFollow}>Follow</button>
+              <button className='button6' disabled={followDisable} onClick={clickFollow}>Follow</button>
             </p>
             ) : ("")}
 

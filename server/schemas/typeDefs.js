@@ -39,7 +39,7 @@ const typeDefs = gql`
    video(videoId: ID!): Video
    myVideos(videoAuthor: String!): [Video]
    users: [User]
-   user(_id: ID!): User
+   user(id: ID!): User
    genres: [Genre]
    genre(_id: ID!): Genre
    me: User

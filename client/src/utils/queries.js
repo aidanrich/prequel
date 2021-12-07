@@ -61,7 +61,7 @@ export const QUERY_USERS = gql`
 
 export const QUERY_SINGLE_USER = gql`
   query singleUser($id: ID!) {
-    user(_id: $id) {
+    user(id: $id) {
       name
       email
       level

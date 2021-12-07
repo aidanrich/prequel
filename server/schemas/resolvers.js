@@ -10,8 +10,8 @@ const resolvers = {
     },
 
     // Query for one user
-    user: async (parent, { _id }) => {
-      return User.findById(_id);
+    user: async (parent, { id }) => {
+      return User.findById({ _id: id});
     },
 
     // Query for all videos

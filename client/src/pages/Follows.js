@@ -30,7 +30,7 @@ const Follows = () => {
                         </Card.Header>
                         <Card.Body className="video-body">
                             <Card.Title className="roboto-font">
-                                <Link className="nav-item nav-link" to={`/followprofiles/${video}`}><i class="fas fa-play-circle"></i> Videos</Link>
+                                <Link className="nav-item nav-link" to={`/followprofiles/${video}`}><i className="fas fa-play-circle"></i> Videos</Link>
                             </Card.Title>
                         </Card.Body>
                     </Card>
